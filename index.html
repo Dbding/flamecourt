@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>炎上法庭 FlameCourt</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>炎上法庭 <span>FlameCourt</span></h1>
+    <p>輿論攻防 × 蒐證解謎 × Boss 戰｜GitHub Pages Edition</p>
+  </div>
+  <nav>
+    <button id="startBtn" class="primary">開始任務</button>
+    <button id="guideBtn">任務說明</button>
+    <button id="resetBtn">重開</button>
+  </nav>
+</header>
+
+<main class="layout">
+  <section class="gamewrap">
+    <canvas id="game" width="1024" height="576"></canvas>
+  </section>
+
+  <aside class="hud">
+    <section class="panel">
+      <div class="eyebrow">CURRENT MISSION</div>
+      <h2 id="missionTitle">等待開始</h2>
+      <p id="missionText">點擊「開始任務」，依照畫面與右側任務提示完成蒐證。</p>
+      <div class="objective">
+        <b>目前要做什麼</b>
+        <ol id="objectives"></ol>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="stat"><span>理性值</span><b id="reasonTxt">100</b></div>
+      <div class="bar"><i id="reasonBar" class="green"></i></div>
+      <div class="stat"><span>公信力</span><b id="credTxt">0</b></div>
+      <div class="bar"><i id="credBar" class="blue"></i></div>
+      <div class="stat"><span>獵巫值</span><b id="witchTxt">0</b></div>
+      <div class="bar"><i id="witchBar" class="red"></i></div>
+      <div class="stat"><span>Boss 血量</span><b id="bossTxt">-</b></div>
+      <div class="bar"><i id="bossBar" class="yellow"></i></div>
+    </section>
+
+    <section class="panel">
+      <div class="eyebrow">EVIDENCE CORES</div>
+      <div class="cores">
+        <div id="core0">時間軸</div>
+        <div id="core1">商業透明</div>
+        <div id="core2">創作尊重</div>
+        <div id="core3">動員證據</div>
+        <div id="core4">平台規範</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="eyebrow">CONTROLS</div>
+      <p><kbd>←</kbd><kbd>→</kbd> / <kbd>A</kbd><kbd>D</kbd> 移動</p>
+      <p><kbd>↑</kbd> / <kbd>W</kbd> / <kbd>Space</kbd> 跳躍</p>
+      <p><kbd>Z</kbd> 冷靜光束：清除留言砲火</p>
+      <p><kbd>X</kbd> 事實盾牌：短時間防禦</p>
+      <p><kbd>C</kbd> 透明炸彈：清場並提升公信力</p>
+    </section>
+
+    <section class="panel logpanel">
+      <div class="eyebrow">EVENT LOG</div>
+      <div id="log"></div>
+    </section>
+  </aside>
+</main>
+
+
+<div class="mobileControls" aria-label="手機觸控操作">
+  <div class="pad">
+    <button class="touchBtn" data-key="ArrowLeft">←</button>
+    <button class="touchBtn" data-key="ArrowRight">→</button>
+  </div>
+  <div class="actionsPad">
+    <button class="touchBtn skill" data-key="z">冷靜<br>Z</button>
+    <button class="touchBtn skill" data-key="x">盾牌<br>X</button>
+    <button class="touchBtn skill" data-key="c">透明<br>C</button>
+    <button class="touchBtn jump" data-key=" ">跳躍</button>
+  </div>
+</div>
+
+<div id="modal" class="modal">
+  <div class="modalbox">
+    <div class="eyebrow">PLAYABLE PROTOTYPE</div>
+    <h2>炎上法庭 FlameCourt</h2>
+    <p>你是「公民稽核員」。目標不是謾罵或獵巫，而是在流量砲火中蒐集證據、保護無辜者、建立公信力，最後依法封印失控 Boss。</p>
+    <div class="guide">
+      <div>
+        <b>你要做什麼？</b>
+        <ol>
+          <li>依序完成五個蒐證關卡。</li>
+          <li>每關取得發光的核心證據。</li>
+          <li>用 Z、X、C 抵抗彈幕與粉絲軍團。</li>
+          <li>避免碰到「獵巫陷阱」或誤傷 NPC。</li>
+          <li>集滿五個核心後進入最終 Boss 戰。</li>
+        </ol>
+      </div>
+      <div>
+        <b>勝利條件</b>
+        <ol>
+          <li>理性值不可歸零。</li>
+          <li>獵巫值不可滿格。</li>
+          <li>證據越完整，Boss 受到越高傷害。</li>
+          <li>公信力高且獵巫值低，可達成完美結局。</li>
+        </ol>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="modalStart" class="primary">開始任務</button>
+      <button id="modalClose">先看畫面</button>
+    </div>
+    <p class="note">本遊戲為虛構諷刺型原型，不鼓勵現實騷擾、獵巫或人身攻擊。</p>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
